@@ -1,0 +1,34 @@
+public class Logger {
+    private static Logger instance;
+
+    // Private constructor to prevent instantiation from outside the class
+    private Logger() {
+    }
+
+    // Public method to get the instance of the class
+    public static Logger getInstance() {
+        if (instance == null) {
+            instance = new Logger();
+        }
+        return instance;
+    }
+
+    // Log a message
+    public void log(String message) {
+        System.out.println("Log: " + message);
+    }
+}
+
+public class MyApp {
+    public static void main(String[] args) {
+        // Get the logger instance
+        Logger logger = Logger.getInstance();
+
+        // Use the logger to log messages throughout the application
+        logger.log("Application started");
+
+        // ... rest of the application ...
+
+        logger.log("Application finished");
+    }
+}

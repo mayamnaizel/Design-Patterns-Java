@@ -1,0 +1,42 @@
+import java.util.Properties;
+
+public class ConfigurationManager {
+    private static ConfigurationManager instance;
+    private Properties properties;
+
+    // Private constructor to prevent instantiation from outside the class
+    private ConfigurationManager() {
+        // Load configuration properties (this could be from a file, database, etc.)
+        properties = new Properties();
+        properties.setProperty("database.url", "jdbc:mysql://localhost:3306/mydatabase");
+        properties.setProperty("database.username", "user");
+        properties.setProperty("database.password", "password");
+    }
+
+    // Public method to get the instance of the class
+    public static ConfigurationManager getInstance() {
+        if (instance == null) {
+            instance = new ConfigurationManager();
+        }
+        return instance;
+    }
+
+    // Get a configuration value by key
+    public String getConfiguration(String key) {
+        return properties.getProperty(key);
+    }
+}
+
+public class MyApp {
+    public static void main(String[] args) {
+        // Get the configuration manager instance
+        ConfigurationManager configManager = ConfigurationManager.getInstance();
+
+        // Use the configuration manager to retrieve configuration values
+        String databaseUrl = configManager.getConfiguration("database.url");
+        String username = configManager.getConfiguration("database.username");
+        String password = configManager.getConfiguration("database.password");
+
+        // ... rest of the application ...
+    }
+}

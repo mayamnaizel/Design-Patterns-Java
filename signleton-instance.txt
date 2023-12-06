@@ -1,0 +1,32 @@
+public class Singleton {
+    private static Singleton instance;
+
+    // Private constructor to prevent instantiation from outside the class
+    private Singleton() {
+    }
+
+    // Public method to get the instance of the class
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+
+    // Other methods and properties of the class
+    public void doSomething() {
+        System.out.println("Singleton is doing something.");
+    }
+}
+
+public class SingletonExample {
+    public static void main(String[] args) {
+        Singleton singleton1 = Singleton.getInstance();
+        Singleton singleton2 = Singleton.getInstance();
+
+        // Both instances refer to the same object
+        System.out.println(singleton1 == singleton2);  // Output: true
+
+        singleton1.doSomething();  // Output: Singleton is doing something.
+    }
+}
