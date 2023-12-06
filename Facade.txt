@@ -1,0 +1,50 @@
+public class SubSystemA {
+    public void OperationA(){
+        System.out.println("SubSystemA Operation");
+    }
+}
+
+public class SubSystemB(){
+    public void OperationB(){
+        System.out.println("SubSystemB Operation");
+    }
+}
+public class SubSystemC(){
+    public void OperationC(){
+        System.out.println("SubSystemC Operation");
+    }
+}
+public class Facade(){
+    private SubSystemA systemA;
+    private SubSystemB systemB;
+    private SubSystemC systemC;
+
+    public Facade(){
+        this.systemA= new SubSystemA();
+        this.systemB = new SubSystemB();
+        this.systemC = new SubSystemC();
+
+    }
+    public void operation1(){
+        //encapsulates subsystemA & subsystemB
+        //inside operation1 it calls operationA from systemA & systemB
+        systemA.OperationA();
+        systemB.OperationB();
+    }
+    public void operation2(){
+        //encapsulates subsystemB & subsystemC
+        //inside operation1 it calls operationB from systemB & systemC
+        systemB.OperationB();
+        systemC.OperationC();
+    }
+}
+
+public class facadeExample(){
+    public static void main(String[] args) {
+        Facade f1 = new Facade();
+        f1.operation1();
+        f1.operation2();
+    }
+}
+
+
