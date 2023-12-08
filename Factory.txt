@@ -1,0 +1,50 @@
+public class FactoryExample {
+    public static void main(String[] args) {
+       ShapeFactory shapefactory = new ShapeFactory();
+       Shape circle = shapefactory.createShape("CIRCLE");
+        if (circle!=null){
+            circle.draw();
+        }
+        Shape rectangle = shapefactory.createShape("RECTANGLE");
+        if (rectangle!=null){
+            rectangle.draw();
+        }
+    }
+}
+//interface for the shape needed
+interface Shape{
+    void draw();
+}
+
+//class circle concrete implementing shape interface
+class Circle implements Shape {
+
+    @Override
+    public void draw() {
+        System.out.println("Drawing a circle");
+    }
+}
+//class rectangle concrete implementing shape interface
+
+class Rectangle implements Shape{
+
+    @Override
+    public void draw() {
+        System.out.println("Drawing a rectangle");
+    }
+}
+
+class ShapeFactory{
+//factory method to create instance of shape
+    public Shape createShape (String shapeType){
+        if (shapeType == null){
+            return null;
+        }
+        if (shapeType.equalsIgnoreCase("CIRCLE")){
+            return new Circle();
+        } else if (shapeType.equalsIgnoreCase("RECTANGLE")) {
+            return new Rectangle();
+        }
+        return null;
+    }
+}
